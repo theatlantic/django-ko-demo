@@ -1,0 +1,190 @@
+$max-width: 1260px;
+$rail-under-breakpoint: $max-width;
+
+#homepage .more-news {
+    padding-top: 0;
+    background-color: #000;
+}
+
+#homepage .more-news.full-width {
+    @media(min-width: $rail-under-breakpoint + 1) {
+        width: 1260px;
+    }
+
+    @media(max-width: $rail-under-breakpoint) {
+        width: inherit;
+        max-width: $container-width;
+    }
+}
+
+#homepage .more-news .homepage-module-rubric {
+    display: none;
+}
+
+#homepage .more-news .articles {
+    border-top: 40px solid #fff;
+
+}
+#homepage .more-news.full-width .articles {
+    background-color: transparent;
+    border-top: 0;
+
+    @media(min-width: $rail-under-breakpoint + 1) {
+        margin: 0;
+    }
+}
+
+#homepage .more-news .article {
+    text-align: center;
+}
+
+#homepage .more-news.full-width .article {
+    @media(min-width: $rail-under-breakpoint + 1) {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: left;
+    }
+
+    @media(max-width: $rail-under-breakpoint) {
+        text-align: center;
+    }
+}
+
+#homepage .more-news .article .article-link,
+#homepage .more-news .article .hed {
+    color: #fff;
+}
+
+#homepage .more-news .article .hed {
+    @media(min-width: $one-column-breakpoint + 1) {
+        font-size: rem(42px);
+    }
+}
+
+#homepage .more-news .article .dek,
+#homepage .more-news .article .rubric {
+    display: none;
+}
+
+#homepage .more-news .article .metadata {
+    color: #ccc;
+    font-size: 13px;
+}
+
+#homepage .more-news .article:nth-child(1) {
+    position: relative;
+}
+
+#homepage .more-news.full-width > .articles > .article:nth-child(1) {
+
+    @media(min-width: $rail-under-breakpoint + 1) {
+        width: calc(100% - 300px);
+        float: left;
+    }
+
+}
+
+#homepage .more-news .article:nth-child(n + 2) .lead-img {
+    display: none;
+}
+
+@media(min-width: $one-column-breakpoint + 1) {
+    #homepage .more-news > .articles > .article:nth-child(1) .lead-img {
+        margin-bottom: 0;
+    }
+
+    #homepage .more-news > .articles > .article:nth-child(1) .content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        padding: 30px 65px;
+        @include box-sizing(border-box);
+        @include background(linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)));
+    }
+
+    #homepage .more-news .article:nth-child(n + 2) {
+        width: 300px;
+        float: right;
+        padding: 0 30px;
+        margin-top: 40px;
+        @include box-sizing(border-box);
+    }
+
+    #homepage .more-news .article:nth-child(n + 2) .hed {
+        font-size: 22px;
+        font-weight: normal;
+        letter-spacing: 0.5px;
+    }
+}
+
+@media(min-width: $rail-under-breakpoint + 1) {
+    #homepage .more-news.full-width .article:nth-child(2) .rubric {
+        display: inline-block;
+        margin-bottom: 40px;
+        padding-top: 6px;
+    }
+    #homepage .more-news.full-width .article:nth-child(2) .rubric:before {
+        content: "More ";
+    }
+}
+
+@media(min-width: $one-column-breakpoint + 1) {
+    #homepage .more-news .article:nth-child(n + 2) {
+        float: left;
+        margin: 40px 15px 25px;
+        @include box-sizing(border-box);
+        width: calc(33.33333333333% - 30px);
+        padding: 0 10px;
+    }
+
+    #homepage .more-news .article:nth-child(3) .rubric {
+        display: inline-block;
+        position: absolute;
+        top: -39px;
+        left: 50%;
+        @include transform(translateX(-50%))
+    }
+
+    #homepage .more-news .article:nth-child(3) .rubric:before {
+        content: "More ";
+    }
+
+    @media(max-width: $container-breakpoint) {
+        #homepage .more-news .article:nth-child(n + 2) .hed {
+            font-size: 17px;
+        }
+    }
+}
+
+@media(min-width: $rail-under-breakpoint + 1) {
+    #homepage .more-news.full-width .article:nth-child(n + 2) {
+        float: right;
+        margin: 40px 0 0 0;
+        padding: 0 30px;
+        width: 300px;
+    }
+    #homepage .more-news.full-width .article:nth-child(3) .rubric {
+        display: none;
+    }
+}
+
+@media(max-width: $one-column-breakpoint) {
+    #homepage .more-news .article:nth-child(2) {
+        border-top: 1px solid #ccc;
+    }
+
+    #homepage .more-news .article:nth-child(2) .hed {
+        margin-top: 30px;
+    }
+
+    #homepage .more-news .article:nth-child(2) .rubric {
+        display: inline-block;
+    }
+
+    #homepage .more-news .article:nth-child(4) {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 30px;
+    }
+}

@@ -1,0 +1,35 @@
+# Package management + compatibility
+# ----------------------------------
+setuptools==15.2
+six==1.9.0
+wheel==0.24.0
+
+# Django + Admin Extensions
+# -------------------------
+-e git+git@github.com:theatlantic/django.git@1.8.4postatl-1.2#egg=django
+django-grappelli==2.7.1
+-e git+git@github.com:theatlantic/django-ckeditor.git@v4.4.7post-atl-4.06#egg=django-ckeditor
+django-select2-forms==1.1.25
+django-nested-admin==2.1.2
+django-generic-plus==1.2.22
+django-curation==1.0.31
+
+# Imaging
+# -------
+Pillow==2.9.0
+django-cropduster==4.8.35
+
+# XML / Feeds
+# -----------
+lxml==3.4.4
+defusedxml==0.4.1
+
+# Datetime
+# --------
+pytz
+
+# Frontend Packages
+# -------------
+django-pipeline==1.5.3
+libsass==0.8.3
+django-libsass==0.2

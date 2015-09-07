@@ -1,0 +1,110 @@
+#homepage .pullquote-module {
+    @include backface-visibility(hidden);
+
+    @media(max-width: $one-column-breakpoint) {
+        padding: 0;
+    }
+}
+
+#homepage .pullquote-module .content {
+    padding: 75px 85px 18px;
+    @include flexbox((display: flex, flex-direction: column));
+
+    @media(max-width: $two-column-breakpoint) {
+        padding-bottom: 50px;
+    }
+
+    @media(max-width: $one-column-breakpoint) {
+        padding: 20px 40px 30px;
+    }
+}
+
+#homepage .pullquote-module .lead-img,
+#homepage .pullquote-module .rubric,
+#homepage .pullquote-module .metadata .date {
+    display: none;
+}
+
+#homepage .pullquote-module .article {
+    position: relative;
+    background: #000;
+    color: #fff;
+    text-align: center;
+
+    @media(max-width: $one-column-breakpoint) {
+        margin-top: 0;
+    }
+}
+
+#homepage .pullquote-module .article > a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#homepage .pullquote-module .dek {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: $header-serif;
+    line-height: (56 / 52);
+    margin-bottom: 30px;
+    @include flexbox((order: 1));
+
+    @media(max-width: $two-column-breakpoint) {
+        font-size: 36px;
+    }
+
+    @media(max-width: $one-column-breakpoint) {
+        margin-bottom: 15px;
+        font-size: 24px;
+        display: block;
+    }
+}
+
+#homepage .pullquote-module .metadata {
+    @include flexbox((order: 2));
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+#homepage .pullquote-module .article-link {
+    color: #fff;
+    @include flexbox((order: 3));
+}
+
+#homepage .pullquote-module .hed {
+    font-size: 18px;
+    font-family: $serif;
+    text-decoration: underline;
+    margin: 0 0 18px;
+}
+
+#homepage .pullquote-module .social-icons {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    display: block;
+    @include flexbox((order: 4));
+    z-index: 2;
+    visibility: hidden;
+
+    @media(max-width: $two-column-breakpoint) {
+        visibility: visible;
+    }
+}
+
+#homepage .pullquote-module:hover .social-icons {
+    visibility: visible;
+}
+
+#homepage .pullquote-module .social-icons li {
+    display: inline-block;
+}
+
+#homepage .pullquote-module .social-icons li + li{
+    margin-left: 15px;
+}

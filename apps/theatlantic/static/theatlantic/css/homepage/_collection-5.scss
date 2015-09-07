@@ -1,0 +1,66 @@
+#homepage .collection-5 .article {
+    float: left;
+    width: 300px;
+}
+
+#homepage .collection-5 .hed {
+    font-size: rem(21px);
+}
+
+#homepage .collection-5 .more-link {
+    float: right;
+}
+
+#homepage .collection-5 .article:nth-child(n + 3) {
+    float: right;
+    margin-bottom: 40px;
+}
+
+
+@media(max-width: $two-column-breakpoint) {
+    #homepage .collection-5 .articles {
+        @include flexbox((
+            display: flex,
+            flex-wrap: wrap
+            ));
+    }
+
+    #homepage .collection-5 .article:nth-child(n + 3) {
+        float: left;
+        @include box-sizing(border-box);
+        margin-top: 40px;
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-right: 0;
+        padding: 0 15px;
+        width: 190px + 15px + 15px;
+        text-align: center;
+    }
+
+    #homepage .collection-5 .article:nth-child(3) {
+        clear: left;
+    }
+
+    #homepage .collection-5 .article:nth-child(n+4) {
+        border-left: 1px solid #ccc;
+    }
+
+
+    #homepage .collection-5 .article:nth-child(n + 3) .hed {
+        font-size: 17px;
+    }
+}
+
+#homepage .collection-5 .article:nth-child(n + 3) .hed {
+    margin-bottom: 5px;
+}
+
+#homepage .collection-5 .article:nth-child(n + 3) .lead-img,
+#homepage .collection-5 .article:nth-child(n + 3) .dek,
+#homepage .collection-5 .article:nth-child(n + 3) .rubric {
+    display: none;
+}
+
+.collection-5 .more-link {
+    display: none;
+}

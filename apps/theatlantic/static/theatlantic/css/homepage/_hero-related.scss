@@ -1,0 +1,91 @@
+#homepage .hero-related {
+    background-color: #000;
+    color: #fff;
+}
+
+#homepage .hero-related .homepage-module-rubric {
+    /*position: absolute;*/
+    /*left: 50%;*/
+    top: calc(95vh + 10px);
+}
+
+#homepage .hero-related .article-link {
+    color: #fff;
+}
+
+#homepage .hero-related .dek {
+    display: none;
+}
+
+#homepage .hero-related .articles {
+    @include flexbox((display: flex, justify-content: center, flex-wrap: wrap));
+}
+
+#homepage .hero-related .article {
+    text-align: center;
+}
+
+#homepage .hero-related .article:nth-child(1) {
+    position: relative;
+    width: 100%;
+
+    max-height: 95vh;
+    border-bottom: 1px solid #fff;
+}
+
+#homepage .hero-related .article:nth-child(1) .lead-img {
+    margin-bottom: 0;
+    max-height: 95vh;
+    overflow: hidden;
+}
+
+#homepage .hero-related .article:nth-child(1) .img {
+    @include box-sizing(border-box);
+    max-height: 95vh;
+}
+
+#homepage .hero-related .article:nth-child(1) .content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: $container-width;
+    margin:0 auto;
+    z-index: 2;
+    padding-bottom: 40px;
+    padding-top: 20px;
+
+    &:after {
+        @include background(linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)));
+        position: absolute;
+        bottom: 0;
+        left: -1000px;
+        right: -1000px;
+        content: "";
+        height: 100%;
+        z-index: -1;
+    }
+}
+
+#homepage .hero-related .article:nth-child(n + 2) {
+    width: 300px;
+    float: left;
+    padding: 0 15px;
+    margin: 50px 0 25px;
+    border-left: 1px solid #333;
+}
+
+#homepage .hero-related .article:nth-child(n + 2) .lead-img,
+#homepage .hero-related .article:nth-child(n + 2) .date {
+    display: none;
+}
+
+#homepage .hero-related .article:nth-child(n + 2) .hed {
+    font-size: rem(21px);
+}
+
+#homepage .hero-related .article:last-child {
+    border-right: 1px solid #333;
+}
+
+

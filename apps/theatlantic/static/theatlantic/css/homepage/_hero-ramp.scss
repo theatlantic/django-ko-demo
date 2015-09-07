@@ -1,0 +1,86 @@
+#homepage .hero-ramp .article {
+    position: relative;
+}
+
+#homepage .full-width.hero-ramp .lead-img,
+#homepage .full-width.hero-ramp .lead-img .img {
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+#homepage .full-width.hero-ramp .lead-img {
+    max-height: calc(90vh + 14px);
+    margin-bottom: 0;
+}
+
+#homepage .full-width.hero-ramp .lead-img .img {
+    padding-bottom: 61.8%;
+    padding-bottom: calc(61.8% + 14px);
+}
+
+#homepage .full-width.hero-ramp .lead-img figcaption {
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    background: #fff;
+    text-align: right;
+}
+
+#homepage .hero-ramp .content {
+    @include box-sizing(border-box);
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+
+    margin: 0 auto;
+    padding: 35px 40px 40px;
+
+    @media(min-width: $one-column-breakpoint + 1px) {
+        color: #fff;
+        background: #000;
+        @include background(linear-gradient(rgba(#000, 0), rgba(#000, 1)));
+    }
+
+    @media(max-width: $two-column-breakpoint) {
+        width: inherit;
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    @media(max-width: $one-column-breakpoint) {
+        margin: 10px auto 0;
+        position: static;
+        padding: 0;
+    }
+}
+
+#homepage .hero-ramp.full-width .content {
+    padding-left: calc(50% - (#{$container-width} / 2));
+    padding-right: calc(50% - (#{$container-width} / 2));
+
+    @media(max-width: $two-column-breakpoint) {
+        width: inherit;
+    }
+}
+
+#homepage .hero-ramp .article-link {
+    @media(min-width: $one-column-breakpoint + 1px) {
+        color: #fff;
+    }
+}
+
+#homepage .hero-ramp .hed {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+#homepage .hero-ramp .dek {
+    display: none;
+}
+
+#homepage .hero-ramp .rubric {
+    display: none;
+}

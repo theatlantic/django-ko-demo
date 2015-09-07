@@ -1,0 +1,79 @@
+// Fonts
+$serif: "Lyon Text", Georgia, Times, serif;
+$header-serif: "Lyon Display", Georgia, Times, serif;
+$sans: "Proxima Nova", Helvetica, Arial, sans-serif;
+$sans-condensed: Rajdhani, Helvetica, Arial, sans-serif;
+
+// Colors
+$link-color: #458CD5;
+$atlantic-red: #EC1B23;
+$sponsor-color: #FFC317;
+
+// Geometries
+$base-font-size: 18px;
+$mobile-font-size: 16px;
+
+$header-height: 40px;
+$fixed-header-body-padding: 40px;
+$breaking-news-height: 40px;
+
+$container-width: 960px;
+$article-width: 630px;
+$grid-padding: 30px;
+
+$module-more-news-min-width-fixed: 580px;
+
+$golden-ratio-padding: 61.803%;
+
+// Grid Column Widths
+$one-third-width: 300px;
+$two-thirds-width: (2 * $one-third-width) + $grid-padding;
+$one-half-width: 465px;
+
+$tiny-image-width: 120px;
+$tiny-image-padding: 10px;
+
+// Breakpoints
+$article-gutter: 85px;
+$breakpoint-padding: 50px;
+
+$mobile-font-size-breakpoint: $article-width + $breakpoint-padding;
+
+$mobile-header-breakpoint: 670px + $breakpoint-padding;
+$header-reduce-headline-breakpoint: 1000px + $breakpoint-padding;
+$header-hide-headline-breakpoint: 760px + $breakpoint-padding;
+$header-hide-section-title-breakpoint: 500px;
+
+$container-breakpoint: $container-width + $breakpoint-padding;
+
+
+//article
+$article-gutter-breakpoint: $container-breakpoint + ($article-gutter * 2);
+$article-mobile-breakpoint: $article-width + $breakpoint-padding;
+$article-authors-hide-breakpoint: $container-width + $breakpoint-padding;
+
+$footer-tablet-breakpoint: 1120px;
+$tablet-section-width: 640px;
+$footer-mobile-breakpoint: $tablet-section-width + $breakpoint-padding;
+$mobile-section-width: 300px;
+$mobile-content-width: 280px;
+
+//landing
+$tablet-breakpoint: 1010px;
+$mobile-breakpoint: 680px;
+
+//homepage
+$two-column-breakpoint: $container-width + $breakpoint-padding;
+$one-column-breakpoint: $two-thirds-width + $breakpoint-padding;
+
+//notes
+$notes-drop-right-rail: 1280px;
+$notes-tablet-breakpoint: 1010px;
+$notes-large-screen-breakpoint: 1500px;
+
+// mixins
+@mixin fluid-container {
+    width: 94%;
+    max-width: $container-width;
+    margin: 0 auto;
+}

@@ -1,0 +1,218 @@
+{% extends 'admin/change_form.html' %}
+{% load url from future %}
+{% load pipeline %}
+
+{% block stylesheets %}
+    {% stylesheet "theatlantic:curation_nouveau" %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    {{ block.super }}
+
+    <div id="homepage-wrapper">
+        <div id="homepage">
+
+            <div id="homepage-stash" data-bind="foreach: {data: module_set.slice(0, 1), as: 'module'}">
+                <!-- ko if: module.layout() == 'stash' -->
+                <a href="#homepage-stash" class="stash-link">
+                    Stash (<span data-bind="html: module.undeletedItemCount()"></span>)</a>
+                    <ul id="homepage-stash-inner">
+                        <li class="homepage-module editable-module stash">
+                            <ul id="homepage-stash-items" class="articles" data-bind="sortable:
+                                    {
+                                        data: module.item_set.sortByPosition(),
+                                        as: 'item',
+                                        options: module.sortableOptions(),
+                                        beforeMove: module.sortableBeforeMove,
+                                        template: 'template-article'
+                                    }">
+                            </ul>
+                        </li>
+                    </ul>
+                <!-- /ko -->
+            </div>
+
+            <ul id="homepage-modules" data-bind="foreach: {
+                        data: module_set.sortByPosition(),
+                        as: 'module'
+                    }">
+                <li data-bind="attr: {
+                    'class': module.className(),
+                    'data-is-deleted': (module.DELETE()) ? 'true' : 'false',
+                    'data-module-position': $index()
+                  }">
+                    <div class="module-position" data-bind="ifnot: module.DELETE() &amp;&amp; module.realPosition() &gt; 0">
+                        <span data-bind="html: module.editPosition() + 1"></span>
+                    </div>
+                    <div class="module-tools" data-bind="if: module.layout() != 'stash' || module.parent().module_set().length == 1">
+                        <div class="module-tools-inner" data-bind="if: module.layout() != 'stash'">
+                            <a href="#" data-bind="
+                                click: module.toggleDelete,
+                                attr: {
+                                    'class': (module.id() == '')
+                                        ? 'remove-module'
+                                        : (module.DELETE()) ? 'undelete-module' : 'delete-module',
+                                    'title': (module.id() == '') ? 'Remove' : ((module.DELETE()) ? 'Undelete' : 'Delete')
+                                }"></a>
+                            <!-- ko if: module.canMoveUp() -->
+                            <a href="#" class="module-move-up" title="Move up" data-bind="click: module.moveUp"></a>
+                            <!-- /ko -->
+                            <!-- ko if: module.canMoveDown() -->
+                            <a href="#" class="module-move-down" title="Move down" data-bind="click: module.moveDown"></a>
+                            <!-- /ko -->
+                        </div>
+                        <a href="#" class="insert-module" title="Insert" data-bind="click: module.insertAfter"></a>
+                    </div>
+                    <ul class="homepage-error-list" data-bind="foreach: {
+                        data: module.item_set.sortByPosition().filter(function(i) { return module.DELETE() || !i.DELETE(); }),
+                        as: 'item'
+                    }">
+                        <li data-bind="html: item.form_errors"></li>
+                    </ul>
+                    <ul class="articles" data-bind="sortable:
+                        {
+                            data: module.item_set.sortByPosition().filter(function(i) { return module.DELETE() || !i.DELETE(); }),
+                            as: 'item',
+                            options: module.sortableOptions(),
+                            beforeMove: module.sortableBeforeMove,
+                            template: 'template-article'
+                        }">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="add-module-modal" style="display:none">
+        <div class="module-icon hero" data-module-type="hero" data-initial-num="1"></div>
+        <div class="module-icon hero-ramp" data-module-type="hero-ramp" data-initial-num="1"></div>
+        <div class="module-icon more-news" data-module-type="more-news" data-initial-num="4"></div>
+        <div class="module-icon collection-2" data-module-type="collection-2" data-initial-num="2"></div>
+        <div class="module-icon collection-5" data-module-type="collection-5" data-initial-num="5"></div>
+        <div class="module-icon single-third" data-module-type="single-third" data-initial-num="1"></div>
+        <div class="module-icon single-half" data-module-type="single-half" data-initial-num="1"></div>
+        <div class="module-icon single-two-thirds" data-module-type="single-two-thirds" data-initial-num="1"></div>
+        <div class="module-icon pullquote" data-module-type="pullquote-module" data-initial-num="1"></div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ block.super }}
+<script type="text/javascript">
+    // Prevent AJAX loading of placeholder content in django-curation
+    if (typeof window.DJCURATION == 'object' && DJCURATION.LOOKUP_URL) {
+        delete DJCURATION.LOOKUP_URL;
+    }
+</script>
+<script type="text/html" id="template-article">
+    <li class="article" data-bind="attr: {
+        'data-is-blank': (item.content_type &amp;&amp; item.content_type() != '') ? 'false' : 'true',
+        'data-item-position': item.position,
+        'class': 'article' + ((item.source()) ? ' article-' + item.source() : '') + ((item.DELETE()) ? ' deleted' : '')
+    }">
+        <span class="bind-module-ptr" data-bind="html: (item._parent = $parent) ? '' : ''"></span>
+        <div class="article-tools" data-bind="if: (item.content_type &amp;&amp; item.content_type() != '' &amp;&amp; (item.object_id()) || item.source() == 'url')">
+            <a href="#" class="article-delete" data-bind="click: item.toggleDelete, attr: {
+                title: (item.DELETE() ? 'Undelete article' : 'Delete article')
+            }"></a>
+            <!-- ko if: $parent.layout() != 'stash' -->
+            <a title="Stash article" href="#" onclick="return false" class="article-stash" data-bind="click: item.stash"></a>
+            <!-- /ko -->
+            <!-- ko if: item.source() != 'url' -->
+            <a title="Edit article" target="_blank" class="article-edit" data-bind="attr: {
+                href: DJCURATION.CONTENT_TYPES[item.content_type()].changelist + item.object_id() + '/'
+            }"></a>
+            <!-- /ko -->
+        </div>
+        <article>
+            <figure class="lead-img">
+                <picture data-bind="if: item.image()[0] &amp;&amp; item.image()[0].image(), click: item.editImage, attr: {
+                    'class': 'img' + ((!item.image()[0] || !item.image()[0].image()) ? ' img-blank' : '')
+                }">
+                <!-- ko template:
+                    {
+                        name: 'module-picture-' + $parent.layout(),
+                        data: {
+                            item: item,
+                            itemPos: item.position(),
+                            modulePos: $parent.position()
+                        }
+                    }
+                -->
+                <!-- /ko -->
+                </picture>
+                <!-- ko if: item.image()[0] -->
+                <figcaption class="credit" data-bind="ckeditor: {data: item.image()[0].attribution, configName: 'only_single_link'}" placeholder="Credit" contenteditable="true"></figcaption>
+                <!-- /ko -->
+            </figure>
+            <div class="content">
+                <div class="article-link">
+                    <h1 class="hed" placeholder="Title Goes Here"
+                        data-bind="ckeditor: {
+                                data: item.custom_title,
+                                configName: ($parent.layout() == 'stash') ? 'no_styles' : 'inline_styles_header'
+                            }, attr: {
+                                contenteditable: ($parent.layout() == 'stash') ? 'false' : 'true'
+                            }"></h1>
+                </div>
+                <p class="dek" placeholder="Dek goes here" data-bind="ckeditor: {data: item.custom_dek, configName: 'inline_styles'}" contenteditable="true"></p>
+                <ul class="metadata">
+                    <!-- ko if: item.byline -->
+                    <li class="byline" data-bind="html: item.byline"></li>
+                    <!-- /ko -->
+                    <!-- ko ifnot: item.byline -->
+                    <li class="byline"><div data-bind="ckeditor: {data: item.custom_byline, configName: 'no_styles'}" placeholder="Byline goes here" contenteditable="true"></div></li>
+                    <!-- /ko -->
+                    <li class="date" data-bind="html: item.date_published_display"></li>
+                </ul>
+            </div>
+        </article>
+        <!-- ko ifnot: (item.content_type && item.content_type() != '') -->
+        <ul class="article-droppable" data-bind="sortable: { data: item.dropTargets, options: item.droppableOptions(),
+             }, click: item.populateWithArticle"></ul>
+        <!-- /ko -->
+    </li>
+</script>
+
+<script type="text/html" id="module-picture-collection-2">
+    <source media="(max-width: 1010px)" data-bind="attr: { srcset: item.thumbUrl('465', '465@2x') }"/>
+    <source media="(max-width: 680px)"  data-bind="attr: { srcset: item.thumbUrl('300', '600') }"/>
+    <img data-bind="attr: { srcset: item.thumbUrl('465', '465@2x') }"/>
+</script>
+<script type="text/html" id="module-picture-collection-5">
+    <source media="(max-width: 680px)" data-bind="attr: { srcset: item.thumbUrl('465') }"/>
+    <img data-bind="attr: { srcset: item.thumbUrl('300', '600') }"/>
+</script>
+<script type="text/html" id="module-picture-single-half">
+    <source media="(max-width: 1010px)" data-bind="attr: { srcset: item.thumbUrl('300', '600') }"/>
+    <source media="(max-width: 680px)"  data-bind="attr: { srcset: item.thumbUrl('120', '240') }"/>
+    <img data-bind="attr: { srcset: item.thumbUrl('465', '465@2x') }"/>
+</script>
+<script type="text/html" id="module-picture-single-third">
+    <source media="(max-width: 680px)" data-bind="attr: { srcset: item.thumbUrl('120', '240') }"/>
+    <img data-bind="attr: { srcset: item.thumbUrl('300', '600') }"/>
+</script>
+<script type="text/html" id="module-picture-single-two-thirds">
+    <source media="(max-width: 680px)" data-bind="attr: { srcset: item.thumbUrl('465', '465@2x') }"/>
+    <img data-bind="attr: { srcset: item.thumbUrl('630', '630@2x') }"/>
+</script>
+<script type="text/html" id="module-picture-hero">
+    <source media="(max-width: 680px)" data-bind="attr: { srcset: item.thumbUrl('465', '465@2x') }"/>
+    <img data-bind="attr: { srcset: item.thumbUrl('960', '960@2x') }"/>
+</script>
+<script type="text/html" id="module-picture-hero-ramp">
+    <source media="(max-width: 680px)" data-bind="attr: { srcset: item.thumbUrl('465', '465@2x') }"/>
+    <img data-bind="attr: { srcset: item.thumbUrl('960', '960@2x') }"/>
+</script>
+<script type="text/html" id="module-picture-more-news">
+    <!-- ko if: item.position() == 0 -->
+    <source media="(max-width: 680px)" data-bind="attr: { srcset: item.thumbUrl('465', '465@2x') }"/>
+    <img data-bind="attr: { srcset: item.thumbUrl('960', '960@2x') }"/>
+    <!-- /ko -->
+</script>
+<script type="text/html" id="module-picture-pullquote-module"></script>
+<script type="text/html" id="module-picture-stash"></script>
+{% endblock %}

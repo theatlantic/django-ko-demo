@@ -1,0 +1,269 @@
+@mixin rubric-over-image {
+    position: absolute;
+    top: 0;
+    margin-top: 61.8%;
+    @include transform(translateY(-100%));
+}
+
+@media(max-width: $one-column-breakpoint) {
+    #homepage {
+        background: #EEE;
+    }
+}
+
+#homepage-modules {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow-x: hidden;
+}
+
+#homepage .homepage-module {
+    margin: 0 auto 40px;
+    width: $container-width;
+    padding-top: 40px;
+    border-top: 1px solid #ccc;
+    position: relative;
+
+    @include box-sizing(border-box);
+
+    &:after {
+        // Clearfix
+
+        content: "";
+        clear: both;
+        display: block;
+        height: 0;
+        font-size: 0;
+        visibility: hidden;
+    }
+
+    @media(max-width: $two-column-breakpoint) {
+        width: $two-thirds-width;
+    }
+
+    @media(max-width: $one-column-breakpoint) {
+        background: #fff;
+        width: calc(100% - 20px);
+        max-width: $one-half-width + 40px;
+        margin: 0 auto;
+        border-top: 0;
+        padding: 0 20px 20px;
+        margin-bottom: 10px;
+    }
+}
+
+#homepage .homepage-module:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+
+    @media(max-width: $one-column-breakpoint) {
+        margin-top: 10px;
+    }
+}
+
+#homepage .homepage-module.full-width {
+    width: 100%;
+
+    @media(max-width: $one-column-breakpoint) {
+        width: calc(100% - 20px);
+        max-width: $one-half-width + 40px;
+    }
+}
+
+#homepage .articles {
+    padding: 0;
+    margin: 0 -15px;
+    list-style-type: none;
+
+    @media(max-width: $one-column-breakpoint) {
+        margin: 0 -20px;
+        overflow: hidden;
+    }
+}
+
+#homepage .articles > li {
+    margin: 0 15px;
+    position: relative;
+
+    @media(max-width: $one-column-breakpoint) {
+        margin: 0 20px;
+        margin-top: 20px;
+    }
+}
+
+#homepage .homepage-module-title {
+    margin-top: 0;
+}
+
+#homepage .homepage-module-title a {
+    color: #000;
+}
+
+#homepage .homepage-module .more-link {
+    font-family: $sans-condensed;
+    color: $atlantic-red;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+
+    &:after {
+        display: inline-block;
+        padding-left: 5px;
+        content: "+";
+    }
+}
+
+#homepage .articles .lead-img.no-credit {
+    @media(max-width: $one-column-breakpoint) {
+        margin-bottom: 10px;
+    }
+}
+
+#homepage .articles .lead-img .img {
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    width: 100%;
+    padding-bottom: 61.8%;
+    display: block;
+
+}
+
+#homepage .articles .lead-img .img img {
+    outline: 1px solid #eee;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#homepage .articles .article-link {
+    color: #000;
+}
+
+#homepage .articles .hed {
+    margin-top: 0;
+    font-size: rem(36px);
+    line-height: (40 / 36);
+    margin-bottom: 7px;
+
+    @media(max-width: $two-column-breakpoint) {
+        font-size: 30px;
+    }
+
+    @media(max-width: $one-column-breakpoint) {
+        margin-bottom: 5px;
+    }
+}
+
+#homepage .articles .dek {
+    margin-top: 0;
+    margin-bottom: 11px;
+    font-size: rem(16px);
+    line-height: (20 / 16);
+}
+
+#homepage .articles .metadata {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#homepage .articles .metadata li {
+    display: inline-block;
+}
+
+
+@media(max-width: $one-column-breakpoint) {
+    #homepage .content .hed {
+        font-size: 20px;
+    }
+
+    #homepage .content .dek {
+        display: none;
+    }
+
+    #homepage .content .metadata {
+        font-size: 12px;
+        color: #ccc;
+    }
+}
+
+#homepage .more-stories {
+    text-align: center;
+    border: 1px solid black;
+    width: 200px;
+    margin: 20px auto;
+}
+
+#homepage .more-stories a {
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-family: $sans-condensed;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    padding: 20px 10px;
+    color: #000;
+    background: #fff;
+}
+
+#homepage .more-stories a:hover {
+    text-decoration: none;
+}
+
+// Video play button.
+#homepage .article.article-video .lead-img:after {
+    content: "";
+    position: absolute;
+    width: 90%;
+    max-width: 100px;
+    height: 90%;
+    max-height: 100px;
+    left: 50%;
+    top: 50%;
+    bottom: 10px;
+    background-image: url(../img/play-triangle.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @include transform(translateX(-50%) translateY(-50%));
+}
+
+// Desktop specific module styles.
+@media(min-width: $one-column-breakpoint + 1px) {
+    // Hero
+    @import "homepage/hero";
+
+    // Hero
+    @import "homepage/hero-ramp";
+
+    // Hero related.
+    @import "homepage/hero-related";
+
+    // More news.
+    @import "homepage/more-news";
+
+    // 2-3 collection
+    @import "homepage/collection-5";
+
+    // 1/2 1/2 Collection
+    @import "homepage/collection-2";
+
+    // Singles
+    @import "homepage/singles";
+}
+
+// Mobile specific module styles.
+@media(max-width: $one-column-breakpoint) {
+    @import "homepage/mobile";
+}
+
+// These module styles are different enough from the others that it doesn't
+// make a lot of sense to refactor them into distinct mobile/desktop styles:
+
+// Pullquote
+@import "homepage/pullquote";

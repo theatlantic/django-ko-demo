@@ -1,0 +1,12 @@
+@import "compass";
+#homepage-wrapper {
+    @import "theatlantic/css/variables";
+    @import "theatlantic/css/utils";
+
+    font-family: $serif;
+    font-size: $base-font-size;
+
+    @import "common/css/normalize";
+    @import "theatlantic/css/base";
+    @import "theatlantic/css/homepage";
+}

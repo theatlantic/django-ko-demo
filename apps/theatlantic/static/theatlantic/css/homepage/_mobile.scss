@@ -1,0 +1,126 @@
+// More news
+#homepage .more-news .article:nth-child(n + 2) .lead-img {
+    display: none;
+}
+
+// Collection 5
+#homepage .collection-5 .article:nth-child(n + 2) .lead-img {
+    display: none;
+}
+
+#homepage .collection-5 .article:nth-child(n + 4) {
+    display: none;
+}
+
+// Singles
+#homepage .single-third .article,
+#homepage .single-half .article {
+    padding-left: $tiny-image-width + $tiny-image-padding;
+}
+
+#homepage .single-third .lead-img,
+#homepage .single-half .lead-img {
+    width: $tiny-image-width;
+    margin-left: -($tiny-image-padding + $tiny-image-width);
+    margin-bottom: 0;
+}
+
+#homepage .single-third .rubric,
+#homepage .single-half .rubric {
+    display: none;
+}
+
+#homepage .single-third .hed,
+#homepage .single-half .hed {
+    font-size: 20px;
+}
+
+#homepage .single-two-thirds .lead-img.no-credit {
+    margin-bottom: 10px;
+}
+
+// Special report module.
+#homepage .special-report .homepage-module-title {
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    color: #000;
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-size: 16px;
+    letter-spacing: 1.6px;
+}
+
+#homepage .special-report .lead-img.no-credit {
+    margin-bottom: 10px;
+}
+
+// Video module.
+#homepage .video-module .articles {
+    @include flexbox((display: flex, flex-direction: column));
+}
+
+ #homepage .video-module .article:nth-child(1) {
+     @include flexbox((order: 1));
+     max-width: $one-half-width;
+     width: calc(100% - 40px);
+     min-height: 1px;
+}
+
+#homepage .video-module .article:nth-child(2) {
+     @include flexbox((order: 3));
+     @include pie-clearfix;
+     padding-left: 130px;
+
+     .mdzr-no-flexboxlegacy & {
+         padding-bottom: 20px;
+     }
+}
+
+#homepage .single-third .article .lead-img,
+#homepage .video-module .article:nth-child(2) .lead-img {
+    width: 120px;
+    float: left;
+    margin-left: -130px;
+    margin-bottom: 0;
+}
+
+#homepage .video-module .article:nth-child(2) .hed {
+    font-size: 20px;
+}
+
+#homepage .video-module .ad-wrapper {
+    text-align: center;
+    background: #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: -20px;
+    margin-right: -20px;
+    float: none;
+    @include flexbox((order: 2));
+
+    .mdzr-no-flexboxlegacy & {
+        margin-top: 20px;
+    }
+
+    &:before {
+        content: "Advertisement";
+        font-family: $sans;
+        text-transform: uppercase;
+        font-size: rem(11px);
+        line-height: 1;
+        display: block;
+    }
+}
+
+.collection-5 .more-link {
+    @media (max-width: 680px) {
+        text-align: center;
+        border-top: 1px solid #ddd;
+        display: block;
+        padding: 15px;
+        margin: 20px;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}

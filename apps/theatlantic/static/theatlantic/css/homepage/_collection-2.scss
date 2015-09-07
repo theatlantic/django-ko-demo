@@ -1,0 +1,17 @@
+#homepage .collection-2 .article {
+    float: left;
+    width: $one-half-width;
+
+    @media(max-width: $two-column-breakpoint) {
+        width: $one-third-width;
+    }
+}
+
+#homepage .collection-2 .homepage-module-rubric {
+    display: none;
+}
+
+#homepage .collection-2 .content .rubric {
+    display: inline-block;
+    @include rubric-over-image;
+}
