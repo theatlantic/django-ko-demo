@@ -8,7 +8,7 @@ python apps/manage.py syncdb
 python apps/manage.py runserver
 ```
 
-Files of interest in this repository (all situated within the folder [apps/curation_nouveau](https://github.com/fdintino/wysiwyg-admin/tree/master/apps/curation_nouveau)):
+Files of interest in this repository (all situated within the folder [apps/curation_nouveau](https://github.com/theatlantic/django-ko-demo/tree/master/apps/curation_nouveau)):
 
 <dl>
 <dt><a href="https://github.com/theatlantic/django-ko-demo/blob/master/apps/curation_nouveau/static/curation_nouveau/js/homepage.js">static/curation_nouveau/js/homepage.js</a></dt>
