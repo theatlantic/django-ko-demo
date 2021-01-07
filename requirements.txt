@@ -21,7 +21,7 @@ django-cropduster==4.8.35
 
 # XML / Feeds
 # -----------
-lxml==3.4.4
+lxml==4.6.2
 defusedxml==0.4.1
 
 # Datetime
