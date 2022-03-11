@@ -16,7 +16,7 @@ django-curation==1.0.31
 
 # Imaging
 # -------
-Pillow==2.9.0
+Pillow==9.0.1
 django-cropduster==4.8.35
 
 # XML / Feeds
