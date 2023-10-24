@@ -7,7 +7,7 @@ wheel==0.24.0
 # Django + Admin Extensions
 # -------------------------
 -e git+git@github.com:theatlantic/django.git@1.8.4postatl-1.2#egg=django
-django-grappelli==2.7.1
+django-grappelli==2.15.2
 -e git+git@github.com:theatlantic/django-ckeditor.git@v4.4.7post-atl-4.06#egg=django-ckeditor
 django-select2-forms==1.1.25
 django-nested-admin==2.1.2
